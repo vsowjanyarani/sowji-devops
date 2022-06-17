@@ -9,3 +9,5 @@ stages{
    {
        docker build -t .
    }
+   }
+   }
