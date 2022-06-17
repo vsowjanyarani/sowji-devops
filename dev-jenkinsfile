@@ -4,12 +4,12 @@ stages{
    stage('git checkout') {
      steps{
           checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/namrata-aatmani/productionteam.git']]])
-        }
+     }
     }
    stage('build'){
       steps{
         docker build -t .
-        }
+      }
    }
-  }
+ }
  }
