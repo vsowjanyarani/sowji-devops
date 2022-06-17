@@ -3,11 +3,17 @@ agent any
 stages{
    stage('git checkout')
    {
-     checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/namrata-aatmani/productionteam.git']]])
-   }
+     steps
+        {
+          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/namrata-aatmani/productionteam.git']]])
+        }
+    }
    stage('build')
    {
-       docker build -t .
+      steps
+      {
+        docker build -t .
+        }
    }
    }
    }
