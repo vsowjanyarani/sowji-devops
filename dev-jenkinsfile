@@ -12,7 +12,7 @@ pipeline {
                 docker build -t sowji-ecr .
                 docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:latest
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:latest'''
-            }
+            
         }
     }
     post {
