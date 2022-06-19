@@ -20,7 +20,7 @@ pipeline {
           slackSend channel: 'jenkins-alert', color: 'blue', message: 'job build failed', teamDomain: 'aatmaaniacademy', tokenCredentialId: '4f746343-43f1-4e3a-8cb7-f990ee8ae99c'
         }
         success {
-          slackSend channel: 'jenkins-alert', color: 'blue', message: 'job build sucess', teamDomain: 'aatmaaniacademy', tokenCredentialId: '4f746343-43f1-4e3a-8cb7-f990ee8ae99c'
-        }
+          slackSend channel: 'jenkins-alert', color: 'blue', failOnError: true, message: 'job build failed', teamDomain: 'aatmaaniacademy', tokenCredentialId: '4f746343-43f1-4e3a-8cb7-f990ee8ae99c'
+         } 
     }    
 }
