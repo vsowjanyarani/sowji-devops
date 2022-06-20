@@ -26,10 +26,10 @@ pipeline {
     }
     post {
         failure {
-           slackSend channel: 'testing', color: 'red', failOnError: true, message: 'build failure', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768
+           slackSend channel: 'testing', color: 'red', failOnError: true, message: 'build failure', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768':
         } 
         success {
-         slackSend channel: 'testing', color: 'green', message: 'build success', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+           slackSend channel: 'testing', color: 'green', message: 'build success', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
          } 
     }    
 }
