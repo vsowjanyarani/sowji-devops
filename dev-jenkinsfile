@@ -14,6 +14,10 @@ pipeline {
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:latest'''
             }
         }
+        stage('deploy to kuberneetes'){
+            steps {
+                helm install 
+            }
     }
     post {
         failure {
