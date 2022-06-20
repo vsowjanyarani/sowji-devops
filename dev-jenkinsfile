@@ -18,6 +18,8 @@ pipeline {
             steps {
                 git 'https://github.com/vsowjanyarani/sowji-devops.git'
                 sh 'ls'
+                sh 'cd helm'
+                sh 'helm install dev-helm nodechart/ -f dev-values.yaml -n dev' 
               
             }
          }
