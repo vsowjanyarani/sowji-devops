@@ -14,15 +14,7 @@ pipeline {
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:latest'''
             }
         }
-        stage('deploy to kuberneetes') {
-            steps {
-                git 'https://github.com/vsowjanyarani/sowji-devops.git'
-                sh 'ls'
-                sh 'cd helm'
-                sh 'helm install dev-helm nodechart/ -f dev-values.yaml -n dev' 
-              
-            }
-         }
+        
     }
     post {
         failure {
