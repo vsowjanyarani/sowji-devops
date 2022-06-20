@@ -16,7 +16,8 @@ pipeline {
         }
         stage('deploy to kuberneetes'){
             steps {
-                helm install 
+                sh 'ls'
+              
             }
     }
     post {
