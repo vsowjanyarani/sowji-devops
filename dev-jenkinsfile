@@ -19,6 +19,7 @@ pipeline {
                 sh 'ls'
               
             }
+         }
     }
     post {
         failure {
