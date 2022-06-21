@@ -1,4 +1,6 @@
 FROM node
+ARG GIT_COMMIT=unspecified
+LABEL git_commit=$GIT_COMMIT
 RUN apt-get update
 #install git
 RUN apt-get install git -y
