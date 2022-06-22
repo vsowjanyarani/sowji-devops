@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh '''aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com
                 docker pull 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:qalatest
-                docker tag sowji-ecr:qalatest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:prodlatest
+                docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:prodlatest
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:prodlatest'''
             }
         }
