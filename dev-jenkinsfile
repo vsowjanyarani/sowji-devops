@@ -11,9 +11,7 @@ pipeline {
                 sh '''aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com
                 docker build -t sowji-ecr --build-arg GIT_COMMIT=$(git log -1 --format=%h) .
                 docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
-                docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
-                docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1'''
             }
         }
         
