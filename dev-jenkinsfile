@@ -18,11 +18,9 @@ pipeline {
         }
         stage ('Creating pod using Helm') {
             steps{
-              sh ''' 
-	         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'git@github.com:vsowjanyarani/sowji-devops.git']]])
+              sh '''
                  ls
-		 
-              '''
+                 '''
        }
        }
         
