@@ -19,6 +19,7 @@ pipeline {
         stage ('Creating pod using Helm') {
             steps{
               sh ''' 
+	         git clone kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
                  ls
 		 
               '''
