@@ -16,6 +16,18 @@ pipeline {
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1'''
             }
         }
+        stage ('Creating pod using Helm') {
+            steps{
+              sh ''' 
+              pwd
+	          aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+              kubectl get pods -n dev
+              cd helm
+              helm ls -n dev
+              helm install node nodechart -n dev -f dev-values.yaml
+              '''
+       }
+       }
         
     }
     post {
