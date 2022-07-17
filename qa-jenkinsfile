@@ -21,7 +21,7 @@ pipeline {
 	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
 	        kubectl get pods -n qa
                 helm ls -n qa '''
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/vsowjanyarani/sowji-devops.git']]])
+                sh git clone https://github.com/vsowjanyarani/sowji-devops.git
 	        sh '''
                 helm install nodeqa nodechart -n qa -f qa-values.yaml
                 '''
