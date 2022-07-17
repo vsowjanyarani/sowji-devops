@@ -32,6 +32,7 @@ pipeline {
                 pwd
 	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
 		kubectl get pods -n dev
+		pwd
                 helm ls -n dev
                 helm install nodedev nodechart -n dev -f dev-values.yaml
                 '''
