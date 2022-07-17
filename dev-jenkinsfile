@@ -17,15 +17,7 @@ pipeline {
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1'''
             }
         }
-        stage("install helm"){
-            steps{
-                sh 'wget https://get.helm.sh/helm-v3.6.1-linux-amd64.tar.gz'
-                sh 'ls -a'
-                sh 'tar -xvzf helm-v3.6.1-linux-amd64.tar.gz'
-                sh 'sudo cp linux-amd64/helm /usr/bin'
-                sh 'helm version'
-            }
-        }
+       
         stage ('Creating pod using Helm') {
             steps{
                 sh ''' 
@@ -34,6 +26,7 @@ pipeline {
 		kubectl get pods -n dev
 		pwd
                 helm ls -n dev
+		git clone https://github.com/vsowjanyarani/sowji-devops.git
 		cd sowji-devops/helm
                 helm install nodedev nodechart -n dev -f dev-values.yaml
                 '''
