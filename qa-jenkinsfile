@@ -22,6 +22,7 @@ pipeline {
 	        kubectl get pods -n qa
                 helm ls -n qa 
 		git clone https://github.com/vsowjanyarani/sowji-devops.git
+		cd sowji-devops/helm
                 helm install nodeqa nodechart -n qa -f qa-values.yaml
                 '''
             }
