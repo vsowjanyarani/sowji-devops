@@ -35,7 +35,7 @@ pipeline {
 		 git clone https://github.com/vsowjanyarani/sowji-devops.git
                 cd sowji-devops/helm
                 helm ls -n dev
-                helm install node nodedev -n dev -f dev-values.yaml
+                helm install nodedev nodechart -n dev -f dev-values.yaml
                 '''
             }
         
