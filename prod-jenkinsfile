@@ -19,8 +19,8 @@ pipeline {
                 sh ''' 
                 pwd
 	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
-	        kubectl get pods -n qa
-                helm ls -n qa'''
+	        kubectl get pods -n prod
+                helm ls -n prod'''
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/vsowjanyarani/sowji-devops.git']]])
 	        sh'''
                 cd sowji-devops/helm
