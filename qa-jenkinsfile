@@ -14,6 +14,21 @@ pipeline {
                 docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:qalatest'''
             }
         }
+        stage ('Deployment - Creating pod using Helm') {
+            steps{
+                sh ''' 
+                pwd
+	            aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+	            kubectl get pods -n qa
+                helm ls -n qa'''
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/vsowjanyarani/sowji-devops.git']]])
+	        sh'''
+                cd sowji-devops/helm
+                helm install nodeqa nodechart -n dev -f qa-values.yaml
+                '''
+            }
+        
+       }
        
     }
     post {
