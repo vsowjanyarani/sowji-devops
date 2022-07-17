@@ -19,12 +19,12 @@ pipeline {
                 sh ''' 
                 pwd
 	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
-	        kubectl get pods -n prod
-                helm ls -n prod'''
+	        kubectl get pods -n 
+                helm ls -n prod '''
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/vsowjanyarani/sowji-devops.git']]])
-	        sh'''
+	        sh '''
                 cd sowji-devops/helm
-                helm install nodedev1 nodechart -n dev -f dev-values.yaml
+                helm install prodnode nodechart -n prod -f prod-values.yaml
                 '''
             }
         
