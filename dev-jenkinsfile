@@ -32,8 +32,6 @@ pipeline {
                 pwd
 	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
 		kubectl get pods -n dev
-		 git clone https://github.com/vsowjanyarani/sowji-devops.git
-                cd workspace/dev/sowji-devops/helm/
                 helm ls -n dev
                 helm install nodedev nodechart -n dev -f dev-values.yaml
                 '''
