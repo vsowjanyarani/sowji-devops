@@ -30,7 +30,7 @@ pipeline {
             steps{
                 sh ''' 
                 pwd
-	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1 --role-arn arn:aws:iam::136805086884:role/ecr-role-for-jenkins
                 kubectl get pods -n dev
                 cd helm
                 helm ls -n dev
