@@ -23,7 +23,6 @@ pipeline {
                 helm ls -n qa '''
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/vsowjanyarani/sowji-devops.git']]])
 	        sh '''
-                cd sowji-devops/helm
                 helm install nodeqa nodechart -n qa -f qa-values.yaml
                 '''
             }
