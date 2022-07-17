@@ -5,7 +5,7 @@ pipeline {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/productionteam.git']]])
             }
-        }
+        
         stage('Build and pushToEcr') {
             steps {
                 sh '''aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com
@@ -26,17 +26,18 @@ pipeline {
             }
         }
         stage ('Creating pod using Helm') {
-      steps{
-        sh ''' 
-        pwd
-	    aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
-        kubectl get pods -n dev
-        cd helm
-        helm ls -n dev
-        helm install node nodedev -n dev -f dev-values.yaml
-        '''
-       }
+            steps{
+                sh ''' 
+                pwd
+	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+                kubectl get pods -n dev
+                cd helm
+                helm ls -n dev
+                helm install node nodedev -n dev -f dev-values.yaml
+                '''
+            }
         
+       }
     }
     post {
         failure {
@@ -46,5 +47,5 @@ pipeline {
            slackSend channel: 'testing', color: 'green', message: 'build success', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
          } 
     }    
-}
+
 }
