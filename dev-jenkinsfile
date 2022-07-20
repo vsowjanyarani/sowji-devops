@@ -1,34 +1,66 @@
 pipeline {
     agent any
     stages {
-        stage('git checkout') {
+        stage('continuous Download') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/productionteam.git']]])
-            }
+	        script
+		{   
+		    try
+		    {
+                      checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/productionteam.git']]])
+		     }
+		     catch(Exception e1)
+		     {
+                        slackSend channel: 'testing', color: 'green', message: 'continuous download stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+
+                      }
+                 }
+                }
 	  }
         
         stage('Build and pushToEcr') {
             steps {
-                sh '''aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com
-                docker build -t sowji-ecr --build-arg GIT_COMMIT=$(git log -1 --format=%h) .
-                docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
-                docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1
-                docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
-                docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1'''
+	         script
+		 {
+		   try
+		   {
+                     sh '''aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com
+                     docker build -t sowji-ecr --build-arg GIT_COMMIT=$(git log -1 --format=%h) .
+                     docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
+                     docker tag sowji-ecr:latest 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1
+                     docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:$(git log -1 --format=%h)
+                     docker push 136805086884.dkr.ecr.ap-southeast-1.amazonaws.com/sowji-ecr:dev1'''
+		    }
+		    catch(Exception e1)
+		    {
+                       slackSend channel: 'testing', color: 'green', message: 'continuous build stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+
+                     }
+		  }
             }
         }
        
-        stage ('Creating pod using Helm') {
+        stage ('Continuous deployment') {
             steps{
-                sh ''' 
-                pwd
-	        aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
-		kubectl get pods -n dev
-		pwd
-                helm ls -n dev
-		cd sowji-devops/helm
-                helm install nodedev nodechart -n dev -f dev-values.yaml
-                '''
+	        script
+		{
+		  try
+		  {
+                    sh ''' 
+                    pwd
+	            aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+		    kubectl get pods -n dev
+		    pwd
+                    helm ls -n dev
+		    cd sowji-devops/helm
+                    helm install nodedev3 nodechart -n dev -f dev-values.yaml
+                    '''
+		   }
+		   catch(Exception e1)
+		   {
+                      slackSend channel: 'testing', color: 'green', message: 'continuous deployment stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+
+                   }
             }
         
        }
