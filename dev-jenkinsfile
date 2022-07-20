@@ -53,7 +53,7 @@ pipeline {
 		    pwd
                     helm ls -n dev
 		    cd sowji-devops/helm
-                    helm install nodedev3 nodechart -n dev -f dev-values.yaml
+                    helm instal nodedev3 nodechart -n dev -f dev-values.yaml
                     '''
 		   }
 		   catch(Exception e1)
