@@ -48,7 +48,7 @@ pipeline {
 		  {
                     sh ''' 
                     pwd
-	            aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
+	            aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-2
 		    kubectl get pods -n dev
 		    pwd
                     helm ls -n dev
