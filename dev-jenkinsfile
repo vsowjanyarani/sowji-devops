@@ -7,7 +7,7 @@ pipeline {
 		{   
 		    try
 		    {
-                      checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/productionteam.git']]])
+                      checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/produtionteam.git']]])
 		     }
 		     catch(Exception e1)
 		     {
