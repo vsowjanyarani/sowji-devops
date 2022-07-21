@@ -25,6 +25,7 @@ pipeline {
 	              aws eks update-kubeconfig --name sowji-cluster --region ap-southeast-1
 	              kubectl get pods -n qa
                       helm ls -n qa 
+		      rm -rf sowji-devops
 		      git clone https://github.com/vsowjanyarani/sowji-devops.git
 		      cd sowji-devops/helm
                       helm install nodeqa6 nodechart -n qa -f qa-values.yaml
