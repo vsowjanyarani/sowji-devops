@@ -24,7 +24,7 @@ pipeline {
 		rm -rf sowji-devops
 		git clone https://github.com/vsowjanyarani/sowji-devops.git
                 cd sowji-devops/helm
-                helm install prodnode nodechart -n prod -f prod-values.yaml
+                helm install prodnode6 nodechart -n prod -f prod-values.yaml
                 '''
             }
         
