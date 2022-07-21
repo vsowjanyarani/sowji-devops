@@ -32,6 +32,7 @@ pipeline {
 		     }
 		     catch(Exception e1)
 		     {
+		        error "Program failed, please read logs..."
                         slackSend channel: 'testing', color: 'green', message: 'continuous deploy stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
 
                       }
