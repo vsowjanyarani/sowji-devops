@@ -15,7 +15,7 @@ pipeline {
 		        String error = "${e1}";
 			echo 'Exception occurred: ' + e1.toString() 
 			echo "Caught: ${e1}"
-                        currentBuild.result = 'FAILURE'
+                        currentBuild.result = 'BUILD FAILED'
 		      }
                  }
                 }
