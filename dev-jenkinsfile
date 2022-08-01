@@ -11,7 +11,9 @@ pipeline {
 		     }
 		     catch(Exception e1)
 		     {
-                        slackSend channel: 'testing', color: 'green', message: 'continuous download stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+		        String error = "${e1}";
+			echo 'Exception occurred: ' + e1.toString() 
+                        slackSend channel: 'testing', color: 'green', message: '${error}', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
                         exit(1)
                       }
                  }
