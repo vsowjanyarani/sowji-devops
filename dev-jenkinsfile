@@ -35,6 +35,8 @@ pipeline {
 		    }
 		    catch(Exception e1)
 		    {
+		       String error = "${e1}";
+		       echo 'Exception occurred: ' + e1.toString() 
                        slackSend channel: 'testing', color: 'green', message: 'continuous build stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
                        exit(1)
                      }
@@ -60,6 +62,8 @@ pipeline {
 		   }
 		   catch(Exception e1)
 		   {
+		      String error = "${e1}";
+		      echo 'Exception occurred: ' + e1.toString() 
                       slackSend channel: 'testing', color: 'green', message: 'continuous deployment stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
                       exit(1)
                    }
