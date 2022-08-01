@@ -15,7 +15,7 @@ pipeline {
 		        String error = "${e1}";
 			echo 'Exception occurred: ' + e1.toString() 
 			echo "Caught: ${e1}"
-                        currentBuild.result = 'BUILD FAILED'
+                        currentBuild.result = 'BUILD FAILED SOWJI'
 		      }
                  }
                 }
@@ -39,7 +39,7 @@ pipeline {
 		       String error = "${e1}";
 		       echo 'Exception occurred: ' + e1.toString() 
 		       echo "Caught: ${e1}"
-                        currentBuild.result = 'FAILURE'
+                        currentBuild.result = 'RUN FAILED SOWJI'
 		      }
                        slackSend channel: 'testing', color: 'green', message: 'continuous build stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
 		  }
@@ -70,7 +70,7 @@ pipeline {
 		      echo 'Exception occurred: ' + e1.toString() 
 		      echo "Caught: ${e1}"
 		      slackSend channel: 'testing', color: 'green', message: '${e1}', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
-                      currentBuild.result = 'FAILURE'
+                      currentBuild.result = 'DEPLOY FAILED RUN'
 		      
 		   }     
             }
