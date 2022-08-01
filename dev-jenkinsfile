@@ -71,7 +71,7 @@ pipeline {
 		      echo "Caught: ${e1}"
                       currentBuild.result = 'FAILURE'
 		   }
-                      slackSend channel: 'testing', color: 'green', message: 'continuous deployment stage failed', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+                      slackSend channel: 'testing', color: 'green', message: '${e1}', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
               
             }
         
