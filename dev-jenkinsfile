@@ -65,7 +65,6 @@ pipeline {
 		   }
 		   catch(Exception e1)
 		   {
-		      sh'''
 		      String error = "${e1}";
 		      echo 'Exception occurred: ' + e1.toString() 
 		      echo "Caught: ${e1}"
