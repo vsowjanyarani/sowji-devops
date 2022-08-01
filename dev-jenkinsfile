@@ -61,7 +61,7 @@ pipeline {
 		    rm -rf sowji-devops
 		    git clone https://github.com/vsowjanyarani/sowji-devops.git
 		    cd sowji-devops/helm
-                    helm install nodedev4 nodechart -n dev -f dev-values.yaml
+                    helm install nodedev5 nodechart -n dev -f dev-values.yaml
                     '''
 		   }
 		   catch(Exception e1)
