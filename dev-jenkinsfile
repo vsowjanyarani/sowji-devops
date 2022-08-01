@@ -65,12 +65,13 @@ pipeline {
 		   }
 		   catch(Exception e1)
 		   {
+		      sh'''
 		      String error = "${e1}";
 		      echo 'Exception occurred: ' + e1.toString() 
 		      echo "Caught: ${e1}"
-                      currentBuild.result = 'FAILURE'
 		      slackSend channel: 'testing', color: 'green', message: '${e1}', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
-
+                      currentBuild.result = 'FAILURE'
+		      
 		   }     
             }
         
