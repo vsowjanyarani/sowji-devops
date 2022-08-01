@@ -8,7 +8,8 @@ pipeline {
 		    try
 		    {
                       checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'global', url: 'https://github.com/namrata-aatmani/productionteam.git']]])
-		     }
+		       slackSend channel: 'testing', color: 'green', message: 'continuous build success', teamDomain: 'aatmaniacademy', tokenCredentialId: '764dd70f-4921-4cb3-ae47-707359506768'
+		    }
 		     catch(Exception e1)
 		     {
 		        String error = "${e1}";
